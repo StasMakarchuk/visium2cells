@@ -158,6 +158,8 @@ def main(img_path, spaceranger_path, sample_name, out_folder, prob_thresh=0.3, n
             adata.obs = pd.concat([adata.obs, metrics_df], axis=1, ignore_index=False)
             adata.write_h5ad(full_path_h5ad)
         
+def cli():
+    fire.Fire(main)
          
 if __name__ == "__main__":
     fire.Fire(main)

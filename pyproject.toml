@@ -22,7 +22,7 @@ Homepage = "https://github.com/cellgeni/cells2visium"
 "Bug Tracker" = "https://github.com/cellgeni/cells2visium/issues"
 
 [project.scripts]
-cells2visium = "cells2visium.cells2visium:main"
+cells2visium = "cells2visium.cells2visium:cli"
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
