@@ -1,7 +1,7 @@
 ## Preparation
 
 Use **requirements.txt** to create python environment.
-For each dataset you will need to prepare: (i) it's name, (ii) path to the full resolution H&E image and (iii) path to the spaceranger output folder. It is important that image was the same as used in spacerranger analysis.
+For each dataset you will need to prepare: (i) it's name, (ii) path to the full resolution H&E image and (iii) path to the spaceranger output folder. It is important that image was the same as used in spaceranger analysis.
 In case you want to run a batch of the samples you will need to save this information for all samples in csv file with the same column names as in **table_with_paths.csv**
 Also, you will need to prepare configuration file (see **conf.yaml**)
 
@@ -10,7 +10,7 @@ Activate python environment
 
 To run single sample:
 
-`python cells2visium.py /path/to/img path/to/spaceranger/folder path/to/output/folder`
+    cells2visium /path/to/img path/to/spaceranger/folder path/to/output/folder
 
 you can also add flags:
  - *background_thresh* [0-255] - intensity in R and B channels, below which pixels will be assigned to tissue (only for "occupancy_tissue" parameter)
@@ -20,12 +20,12 @@ you can also add flags:
  - *nms_thresh* - overlapping threshold. Higher value will lead for larger area fraction of neighbouring segmented cells being overlapped
  - *pmin* - min boundary of percentile-based image normalisation *pmin*=[0,1] (everything below this value will be 0). Image normalisation is happening just before segmentation
  - *pmax* - max boundary of percentile-based image normalisation *pmax*=[0,1]>*pmin* (everything above this value will be 1)
- - *scale_factor* - a multiplier to be used for spot position and sizes. SHould be used if spot positions were defined in image with different resolution to the image you use.
+ - *scale_factor* - a multiplier to be used for spot position and sizes. Should be used if spot positions were defined in image with different resolution to the image you use.
  - *save_segm_polygons* - save segmented polygons in json format. the json file will be saved as dictionary with fields `['coord']` (actual corrdinates of polygons), `['points']` (center positions of each cell/polygon), and `['prob']` (detection probability for each cell)
  - *save_normalised_img* - save normalised image
 To run batch of samples (sequentially, no parallelisation is used):
 
-`python cells2visium_batch.py conf.yaml`
+    python cells2visium_batch.py conf.yaml
 
 Make sure to fill configuration file as well as csv table which is points to
 
@@ -40,7 +40,7 @@ Make sure to fill configuration file as well as csv table which is points to
 - **occupancy_tissue** - percentage of visium spot occupied by the tissue. Tissue is defined as an area where red and blue intensity are less than background_thresh
 
 ## Notes
-- processing of one sample requires quite a lot of memory - I usaully ask for 300-400 Gb
-- in case of working with batch of files, I suggest firstly to use flag *skip_failed_samples: True*, then all failed samples will not stop the whole process, and you will have an utput txt with the list of failed samples
+- processing of one sample requires quite a lot of memory - I usually ask for 300-400 Gb
+- in case of working with batch of files, I suggest firstly to use flag *skip_failed_samples: True*, then all failed samples will not stop the whole process, and you will have an output txt with the list of failed samples
   
 
